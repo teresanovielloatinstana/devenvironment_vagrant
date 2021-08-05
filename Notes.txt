@@ -2,6 +2,7 @@ mkdir blackmambadev
 
 cd blackmambadev  
 
+-> To start the image fedora34 and produce a brand new Vagran file
 vagrant init generic/fedora34  
 
 output:
@@ -10,7 +11,32 @@ ready to `vagrant up` your first virtual environment! Please read
 the comments in the Vagrantfile as well as documentation on
 `vagrantup.com` for more information on using Vagrant.  
   
-// modified Vagrantfile
+// You can modify Vagrantfile  
+
+-> [NOT WORKING IN MY WS TERMINAL]To start with the Vagrant file in this directory, run:  
+vagrant init  
   
+-> To run the virtual machine described by your Vagrant file, run:  
 vagrant up  
   
+-> Boot with debug option:  
+vagrant up --debug  
+  
+-> To ssh to the virtual machine running after 'vagrant up' command, run:  
+vagran ssh
+Note: be careful about rm -rf /, since Vagrant shares a directory at /vagrant with the directory on the host containing your Vagrantfile, and this can delete all those files.
+  
+-> Stop the machine that Vagrant is managing and remove all the resources created during the machine-creation process:  
+[literally: stops and deletes all traces of the vagrant machine]  
+vagrant detroy  
+  
+-> List your box files:  
+vagrant box list
+  
+-> Remove a specific box:  
+vagrant box remove generic/fedora34 --box-version 3.3.2  
+  
+-> Gracefully stop the running vm:  
+vagrant halt  
+  
+
