@@ -1,0 +1,13 @@
+
+kernel-cross-headers.x86_64 : Header files for the Linux kernel for use by cross-glibc
+kernel-debug-core.x86_64 : The Linux kernel compiled with extra debugging enabled
+kernel-headers.x86_64 : Header files for the Linux kernel for use by glibc
+kernel-tools.x86_64 : Assortment of tools for the Linux kernel
+kernel-tools-libs-devel.x86_64 : Assortment of tools for the Linux kernel
+
+The closest equivalent would probably be to install the below packages:
+
+sudo dnf install make automake gcc gcc-c++ kernel-devel
+However, if you don't care about exact equivalence and are ok with pulling in a lot of packages you can install all the development tools and libraries with the below command.
+
+sudo dnf groupinstall "Development Tools" "Development Libraries"

@@ -39,4 +39,6 @@ vagrant box remove generic/fedora34 --box-version 3.3.2
 -> Gracefully stop the running vm:  
 vagrant halt  
   
+-> Reload a vm, to refresh provision:  
+vagrant reload --provision  
 
