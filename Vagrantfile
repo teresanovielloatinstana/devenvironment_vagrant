@@ -86,11 +86,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "cd /home/teresalili ; curl -L -o apache-ant-1.10.11-bin.zip https://downloads.apache.org//ant/binaries/apache-ant-1.10.11-bin.zip ; unzip apache-ant-1.10.11-bin.zip >> /dev/null 2>&1 ; if [ \"$?\" -eq \"0\" ]; then sudo rm -rf apache-ant-1.10.11-bin.zip ; sudo chown --recursive teresalili.teresalili apache-ant-1.10.11 ; fi; cd ; "
   # PHP
   # https://computingforgeeks.com/how-to-install-php-74-on-fedora/
-  # config.vm.provision "shell", inline: "sudo dnf -y install https://rpms.remirepo.net/fedora/remi-release-34.rpm ; sudo dnf -y config-manager --set-enabled remi ; sudo dnf -y module reset php ; dnf -y search"
-  # config.vm.provision "shell", inline: "cd /home/teresalili ; curl -L -o https://fedora.pkgs.org/34/fedora-x86_64/php-7.4.16-1.fc34.x86_64.rpm.html
-  # https://www.zend.com/setting-up-your-php-build-environment
-  config.vm.provision "shell", inline: "sudo dnf -y install gcc gcc-c++ binutils glibc-devel autoconf automake bison flex re2c gdb libtool make pkgconf valgrind git libxml2-devel libsqlite3x-devel"
-  config.vm.provision "shell", inline: "cd /home/teresalili ; git clone https://github.com/php/php-src.git ; sudo chown --recursive teresalili.teresalili php-src ; " 
+  config.vm.provision "shell", inline: "sudo dnf -y install https://rpms.remirepo.net/fedora/remi-release-34.rpm ; sudo dnf -y config-manager --set-enabled remi ; sudo dnf -y module reset php ; dnf -y search"
+  config.vm.provision "shell", inline: "sudo dnf -y install php-json.x86_64 php-cli.x86_64 php-mbstring.x86_64 "
   # HTTPD2
   config.vm.provision :shell, path: "apache_bootstrap.sh"
   
@@ -99,8 +96,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "sudo usermod -a -G docker,wheel teresalili"
   # Add user's own aliases and environment variables
   config.vm.provision "shell", inline: "sudo cp -r /vagrant/.bashrc.d/ /home/teresalili/.bashrc.d/ ; sudo chmod --recursive 775 /home/teresalili/.bashrc.d/; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/"
-  config.vm.provision "shell", inline: "sudo sed -i 's/export ANT_HOME=.*$/export ANT_HOME=/' /home/teresalili/.bashrc.d/env ; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/ ;"
-  config.vm.provision "shell", inline: "sudo cat /vagrant/.bashrc >> /home/teresalili/.bashrc ; sudo chown teresalili.teresalili /home/teresalili/.bashrc "
+  config.vm.provision "shell", inline: "sudo sed -i 's/export ANT_HOME=.*$/export ANT_HOME=\/home\/teresalili\/apache-ant-1.10.11/' /home/teresalili/.bashrc.d/env ; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/ ;"
+  config.vm.provision "shell", inline: "sudo cat /vagrant/.bashrc >> /home/teresalili/.bashrc ; sudo cd /home/teresalili; sudo dos2unix /home/teresalili/.bashrc ; sudo chown teresalili.teresalili /home/teresalili/.bashrc ; cd "
   config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning "
   
 end
