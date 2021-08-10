@@ -7,9 +7,9 @@ sudo dnf install lynx.x86_64 -y
 
 sudo chown --recursive apache.users /var/www
 if ! [ -e /var/www/html ]; then
-  mkdir /var/www/html
+  sudo mkdir /var/www/html
 fi
-cp -rp /vagrant/html/* /var/www/html
+sudo cp -rp /vagrant/html/* /var/www/html
 sudo chown --recursive apache.users /var/www
 
 #to check the index is accessible:
