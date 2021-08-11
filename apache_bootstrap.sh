@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Installing Apache"
+
 sudo dnf install httpd.x86_64 -y
 sudo systemctl start httpd.service
 sudo systemctl enable httpd.service

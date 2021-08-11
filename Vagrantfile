@@ -66,38 +66,99 @@ Vagrant.configure("2") do |config|
   # Development tools
   # Groups
   config.vm.provision "shell", inline: "sudo dnf -y groupinstall \"Development Tools\" \"Development Libraries\" "
-  # kernel
+  # Kernel
   config.vm.provision "shell", inline: "sudo dnf -y install kernel-modules-extra.x86_64"
-  # compilers
+  # Compilers
   config.vm.provision "shell", inline: "sudo dnf -y install gcc-c++.x86_64 gcc-gdb-plugin.x86_64 cmake-filesystem.x86_64"
   # Docker
   config.vm.provision "shell", inline: "sudo dnf -y install dnf-plugins-core"
   config.vm.provision "shell", inline: "sudo dnf -y install docker-compose.noarch docker-distribution.x86_64"
-  config.vm.provision "shell", inline: "cp /vagrant/docker-ce.repo /etc/yum.repos.d/docker-ce.repo ; sudo chown root.root /etc/yum.repos.d/docker-ce.repo"
+  ## Docker repo
+  config.vm.provision "shell", inline: "cp /vagrant/repos/docker-ce.repo /etc/yum.repos.d/docker-ce.repo ; sudo chown root.root /etc/yum.repos.d/docker-ce.repo"
   config.vm.provision "shell", inline: "sudo dnf makecache ; sudo dnf -y install docker-ce docker-ce-cli containerd.io emacs-dockerfile-mode.noarch"
   config.vm.provision "shell", inline: "sudo systemctl enable --now docker" 
   # Maven
   config.vm.provision "shell", inline: "sudo dnf -y install maven.noarch"    
   # Gcloud
   config.vm.provision "shell", inline: "sudo cp -r /vagrant/google-cloud-sdk/ /home/teresalili/; sudo chmod +x /home/teresalili/google-cloud-sdk/install.sh ; sudo chown --recursive teresalili.teresalili /home/teresalili/google-cloud-sdk"
-  # Java
-  config.vm.provision "shell", inline: "sudo dnf -y install java-1.8.0-openjdk.x86_64"
-  # Ant
-  config.vm.provision "shell", inline: "cd /home/teresalili ; curl -L -o apache-ant-1.10.11-bin.zip https://downloads.apache.org//ant/binaries/apache-ant-1.10.11-bin.zip ; unzip apache-ant-1.10.11-bin.zip >> /dev/null 2>&1 ; if [ \"$?\" -eq \"0\" ]; then sudo rm -rf apache-ant-1.10.11-bin.zip ; sudo chown --recursive teresalili.teresalili apache-ant-1.10.11 ; fi; cd ; "
+  # JAVA
+  config.vm.provision "shell", inline: "echo \"Installing JAVA\"; sudo dnf -y install java-1.8.0-openjdk.x86_64"
+  # ANT
+  config.vm.provision "shell", inline: "echo \"Installing ANT\"; /
+										cd /home/teresalili ; curl -L -o apache-ant-1.10.11-bin.zip https://downloads.apache.org//ant/binaries/apache-ant-1.10.11-bin.zip ; /
+										unzip apache-ant-1.10.11-bin.zip >> /dev/null 2>&1 ; if [ \"$?\" -eq \"0\" ]; then /
+                                        sudo rm -rf apache-ant-1.10.11-bin.zip ; /									
+										sudo apache-ant-1.10.11 apache-ant ; sudo mv apache-ant-1.10.11 apache-ant ; sudo ln -fs apache-ant apache-ant-1.10.11 ; /
+										sudo chown --recursive teresalili.teresalili apache-ant apache-ant-1.10.11 ; /
+										fi; cd ; "
   # PHP
-  # https://computingforgeeks.com/how-to-install-php-74-on-fedora/
-  config.vm.provision "shell", inline: "sudo dnf -y install https://rpms.remirepo.net/fedora/remi-release-34.rpm ; sudo dnf -y config-manager --set-enabled remi ; sudo dnf -y module reset php ; dnf -y search"
-  config.vm.provision "shell", inline: "sudo dnf -y install php-json.x86_64 php-cli.x86_64 php-mbstring.x86_64 "
+  ## PHP remi repo
+  ## https://computingforgeeks.com/how-to-install-php-74-on-fedora/
+  config.vm.provision "shell", inline: "echo \"Installing PHP\"; "
+  config.vm.provision "shell", inline: "echo \"Installing PHP REMI Repo\"; "
+  config.vm.provision "shell", inline: "sudo dnf -y install https://rpms.remirepo.net/fedora/remi-release-34.rpm ; sudo dnf -y config-manager --set-enabled remi ; sudo dnf -y module reset php ;"
+  config.vm.provision "shell", inline: "sudo dnf -y install php-json.x86_64 php-cli.x86_64 php-mbstring.x86_64 php-devel.x86_64 php.x86_64 php-opcache.x86_64 php-pdo.x86_64 php-sodium.x86_64 php-xml.x86_64 php-fpm.x86_64"
+  ## PHP zend repo
+  config.vm.provision "shell", inline: "echo \"Installing PHP Zend Repo\"; "
+  config.vm.provision "shell", inline: "sudo cp /vagrant/repos/zend.repo /etc/yum.repos.d/zend.repo ; sudo chown root.root /etc/yum.repos.d/zend.repo; sudo dnf makecache; "
+  config.vm.provision "shell", inline: "sudo dnf -y install php-5.3-bin-zend-server.x86_64 php-5.3-dev-zend-server.x86_64 ;"
+  ## Cloning PHP src
+  ## https://www.zend.com/setting-up-your-php-build-environment
+  config.vm.provision "shell", inline: "echo \"Installing Cloning php-src\"; "
+  config.vm.provision "shell", inline: "cd /home/teresalili/ ; git clone https://github.com/php/php-src.git ; sudo chown --recursive teresalili.teresalili php-src ; cd "
+  ## PHP-Composer
+  config.vm.provision "shell", inline: "echo \"Installing PHP-composer\"; "
+  config.vm.provision "shell", inline: "cd /home/teresalili/ ; sudo mkdir php-composer ; cd php-composer ; sudo php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\"; /
+										cd /home/teresalili/ ; sudo chown --recursive teresalili.teresalili php-composer ; cd php-composer ; /
+										sudo php -r \"if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;\" /
+										sudo php composer-setup.php --install-dir=/usr/local/bin /
+										cd /usr/local/bin/ ; sudo ln -fs composer.phar composer /
+										cd /home/teresalili/ ; sudo chown --recursive teresalili.teresalili php-composer ; /
+										cd ; "
+  # SYMFONY
+  # https://symfony.com/download
+  config.vm.provision "shell", inline: "echo \"Installing Symfony\"; "
+  config.vm.provision "shell", inline: "sudo su - teresalili -c \"wget https://get.symfony.com/cli/installer -O - | bash \" " 
+  
+  # FLY
+  # https://fly.io/docs/hands-on/installing/
+  config.vm.provision "shell", inline: "echo \"Installing FLY\"; "
+  config.vm.provision "shell", inline: "cd  /home/teresalili/ ; \
+					sudo curl -L https://fly.io/install.sh | sh ; cd ;"
+  
   # HTTPD2
   config.vm.provision :shell, path: "apache_bootstrap.sh"
   
+  # Minikube
+  config.vm.provision "shell", inline: "echo \"Installing Minikube\"; "
+  config.vm.provision "shell", inline: "cd  /home/teresalili/ ; \
+					sudo curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm ; \
+					sudo chown teresalili.teresalili minikube-latest.x86_64.rpm ; \
+					sudo rpm -ivh minikube-latest.x86_64.rpm ; cd ; "
+  # https://minikube.sigs.k8s.io/docs/drivers/podman/
+  config.vm.provision "shell", inline: "echo \"Installing Podman driver\"; "
+  config.vm.provision "shell", inline: "sudo dnf -y install podman ; cd ; "
+  
+  # BREW
+  # https://brew.sh/
+  config.vm.provision "shell", inline: "echo \"Installing BREW\"; "
+  config.vm.provision "shell", inline: "sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | sh ; /
+										sudo chown --recursive teresalili.teresalili /home/linuxbrew/.linuxbrew ; /
+										cd ;"
+  
+  # GOMPLATE
+  # https://docs.gomplate.ca/installing/
+  config.vm.provision "shell", inline: "echo \"Installing Gomplate\"; "
+  config.vm.provision "shell", inline: "sudo su - teresalili -c \"/home/linuxbrew/.linuxbrew/bin/brew install gomplate\" ; "
+  
   # Refine user's environment
-  # Add user to docker group
+  # Add user to docker,wheel group
+  config.vm.provision "shell", inline: "echo \"Add user to docker,wheel group\"; "
   config.vm.provision "shell", inline: "sudo usermod -a -G docker,wheel teresalili"
   # Add user's own aliases and environment variables
+  config.vm.provision "shell", inline: "echo \"User Environment\"; "
   config.vm.provision "shell", inline: "sudo cp -r /vagrant/.bashrc.d/ /home/teresalili/.bashrc.d/ ; sudo chmod --recursive 775 /home/teresalili/.bashrc.d/; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/"
-  config.vm.provision "shell", inline: "sudo sed -i 's/export ANT_HOME=.*$/export ANT_HOME=\/home\/teresalili\/apache-ant-1.10.11/' /home/teresalili/.bashrc.d/env ; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/ ;"
   config.vm.provision "shell", inline: "sudo cat /vagrant/.bashrc >> /home/teresalili/.bashrc ; sudo cd /home/teresalili; sudo dos2unix /home/teresalili/.bashrc ; sudo chown teresalili.teresalili /home/teresalili/.bashrc ; cd "
-  config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning "
+  config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning ; sudo chown --recursive teresalili.teresalili /home/teresalili/DEV ; cd ;"
   
 end
