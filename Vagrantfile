@@ -80,7 +80,12 @@ Vagrant.configure("2") do |config|
   # Maven
   config.vm.provision "shell", inline: "sudo dnf -y install maven.noarch"    
   # Gcloud
-  config.vm.provision "shell", inline: "sudo cp -r /vagrant/google-cloud-sdk/ /home/teresalili/; sudo chmod +x /home/teresalili/google-cloud-sdk/install.sh ; sudo chown --recursive teresalili.teresalili /home/teresalili/google-cloud-sdk"
+  config.vm.provision "shell", inline: "cd /home/teresalili/ ; sudo mkdir google-cloud-sdk ; sudo chown --recursive teresalili.teresalili google-cloud-sdk ; cd google-cloud-sdk ; /
+					curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-352.0.0-linux-x86_64.tar.gz /
+					tar xvzf google-cloud-sdk-352.0.0-linux-x86_64.tar.gz /
+					rm -rf google-cloud-sdk-352.0.0-linux-x86_64.tar.gz /
+					cd /home/teresalili/ ; sudo chown --recursive teresalili.teresalili google-cloud-sdk ; /
+					cd ; "
   # JAVA
   config.vm.provision "shell", inline: "echo \"Installing JAVA\"; sudo dnf -y install java-1.8.0-openjdk.x86_64"
   # ANT
@@ -150,6 +155,14 @@ Vagrant.configure("2") do |config|
   # https://docs.gomplate.ca/installing/
   config.vm.provision "shell", inline: "echo \"Installing Gomplate\"; "
   config.vm.provision "shell", inline: "sudo su - teresalili -c \"/home/linuxbrew/.linuxbrew/bin/brew install gomplate\" ; "
+
+  # BFG Repo-Cleaner
+  #
+  config.vm.provision "shell", inline: "echo \"Installing BFG Repo-Cleaner\"; "
+  config.vm.provision "shell", inline: "cd  /home/teresalili/ ; \ mkdir Software ; sudo chown teresalili.teresalili Software ; cd Software ; \
+					curl -LO https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar ; \
+					sudo chown teresalili.teresalili bfg-1.14.0.jar ; \
+					cd ; "
   
   # Refine user's environment
   # Add user to docker,wheel group
@@ -160,5 +173,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "sudo cp -r /vagrant/.bashrc.d/ /home/teresalili/.bashrc.d/ ; sudo chmod --recursive 775 /home/teresalili/.bashrc.d/; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/"
   config.vm.provision "shell", inline: "sudo cat /vagrant/.bashrc >> /home/teresalili/.bashrc ; sudo cd /home/teresalili; sudo dos2unix /home/teresalili/.bashrc ; sudo chown teresalili.teresalili /home/teresalili/.bashrc ; cd "
   config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning ; sudo chown --recursive teresalili.teresalili /home/teresalili/DEV ; cd ;"
+  config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/AGENT_INSTALL ; sudo chown --recursive teresalili.teresalili /home/teresalili/AGENT_INSTALL ; cd ; "
+  config.vm.provision "shell", inline: "sudo cp /vagrant/.config /home/teresalili/.config ; sudo chown --recursive teresalili.teresalili /home/teresalili/.config ; cd ;"
   
 end
