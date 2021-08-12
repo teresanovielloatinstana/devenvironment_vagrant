@@ -13,8 +13,8 @@ export PATH=$ANT_HOME/bin:$PATH
 #export PATH=$HOME/php-bin_DEBUG/bin:$PATH
 
 #PHP8-installation
-export PATH=/home/teresalili/php8/bin:$PATH
-alias php8=/home/teresalili/php8/bin/php
+#export PATH=/home/teresalili/php8/bin:$PATH
+#alias php8=/home/teresalili/php8/bin/php
 
 #FLY installation
 export FLYCTL_INSTALL="$HOME/.fly"
@@ -24,15 +24,8 @@ export PATH=$FLYCTL_INSTALL/bin:$PATH
 export HOMEBREW_INSTALL="/home/linuxbrew/.linuxbrew"
 export PATH=$HOMEBREW_INSTALL/bin:$PATH
 
-# gomplate
-# alias gomplate='docker run hairyhenderson/gomplate'
-# minikube
-alias kubectl="minikube kubectl --"
 #Symfony
 export PATH="$HOME/.symfony/bin:$PATH"
-
-# docker aliases
-alias dockprune='docker container prune'
 
 # INSTANA agent, Instana Robot-shop-installation
 export DOWNLOAD_KEY="XXXXXX"
