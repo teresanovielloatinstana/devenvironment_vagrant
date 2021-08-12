@@ -19,15 +19,13 @@ alias php8=/home/teresalili/php8/bin/php
 #FLY installation
 export FLYCTL_INSTALL="/home/teresalili/.fly"
 export PATH=$FLYCTL_INSTALL/bin:$PATH
-# gomplate
-alias gomplate='docker run hairyhenderson/gomplate'
-# minikube
-alias kubectl="minikube kubectl --"
+
+#HOMEBREW
+export HOMEBREW_INSTALL="/home/linuxbrew/.linuxbrew"
+export PATH=$HOMEBREW_INSTALL/bin:$PATH
+
 #Symfony
 export PATH="$HOME/.symfony/bin:$PATH"
-
-# docker aliases
-alias dockprune='docker container prune'
 
 # INSTANA agent, Instana Robot-shop-installation
 export DOWNLOAD_KEY="XXXXXX"
