@@ -1,0 +1,40 @@
+# to check if an git repo is public or not
+# https git url: <giturl>
+# URL=<giturl><gitext>"
+# wget $URL
+# returns: HTTP request sent, awaiting response... 200 OK | HTTP request sent, awaiting response... 401 Authorization Required
+# Example: URL="https://github.com/instana/backend.git/info/refs?service=git-upload-pack"
+export gitext="/info/refs?service=git-upload-pack"
+export ANT_HOME=/home/teresalili/apache-ant-1.9.15
+export PATH=$ANT_HOME/bin:$PATH
+
+# PHP7-debug installation
+# Attention: enable this export only if you really need to work with PHP debug
+#export PATH=$HOME/php-bin_DEBUG/bin:$PATH
+
+#PHP8-installation
+export PATH=/home/teresalili/php8/bin:$PATH
+alias php8=/home/teresalili/php8/bin/php
+
+#FLY installation
+export FLYCTL_INSTALL="/home/teresalili/.fly"
+export PATH=$FLYCTL_INSTALL/bin:$PATH
+# gomplate
+alias gomplate='docker run hairyhenderson/gomplate'
+# minikube
+alias kubectl="minikube kubectl --"
+#Symfony
+export PATH="$HOME/.symfony/bin:$PATH"
+
+# docker aliases
+alias dockprune='docker container prune'
+
+# INSTANA agent, Instana Robot-shop-installation
+export DOWNLOAD_KEY="XXXXXX"
+export INSTANA_DOWNLOAD_KEY=$DOWNLOAD_KEY
+export download_key=$DOWNLOAD_KEY
+export INSTANA_AGENT_KEY="XXXXXX"
+export agent_key=$INSTANA_AGENT_KEY
+export ROBOT_SHOP_207_KEY="XXXX"
+export INSTANA_EUM_KEY=$ROBOT_SHOP_207_KEY
+export INSTANA_EUM_REPORTING_URL="https://eum-magenta-saas.instana.rocks"
