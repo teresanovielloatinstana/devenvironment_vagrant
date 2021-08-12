@@ -16,6 +16,7 @@ URL https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar
 # Instana Agent
 URL: https://release-instana.instana.rocks/#
 cd AGENT_INSTALL
+# remember to substitute the variables
 curl -o setup_agent.sh https://setup.instana.io/agent && chmod 700 ./setup_agent.sh && sudo ./setup_agent.sh -a $INSTANA_AGENT_KEY -d $DOWNLOAD_KEY -t dynamic -e ingress-magenta-saas.instana.rocks:443  -y -s
 
 # Development repositories
@@ -29,5 +30,8 @@ git clone git@github.com:instana/php-extensions.git
 
 ## QA-QMS
 git clone git@github.com:instana/qa-qms.git
+
+## ROBOT-SHOP
+git clone git@github.com:instana/robot-shop.git
 
 # PHP

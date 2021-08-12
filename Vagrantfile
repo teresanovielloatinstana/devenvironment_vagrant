@@ -175,5 +175,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning ; sudo chown --recursive teresalili.teresalili /home/teresalili/DEV ; cd ;"
   config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/AGENT_INSTALL ; sudo chown --recursive teresalili.teresalili /home/teresalili/AGENT_INSTALL ; cd ; "
   config.vm.provision "shell", inline: "sudo cp /vagrant/.config /home/teresalili/.config ; sudo chown --recursive teresalili.teresalili /home/teresalili/.config ; cd ;"
+
+  # INSTANA AGENT
+  ## dependency on chkconfig
+  config.vm.provision "shell", inline: "sudo dnf install chkconfig -y "
   
 end
