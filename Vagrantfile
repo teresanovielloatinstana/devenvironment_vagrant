@@ -174,7 +174,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "echo \"User Environment\"; "
   config.vm.provision "shell", inline: "sudo cp -r /vagrant/.bashrc.d/ /home/teresalili/.bashrc.d/ ; sudo chmod --recursive 775 /home/teresalili/.bashrc.d/; sudo chown --recursive teresalili.teresalili /home/teresalili/.bashrc.d/"
   config.vm.provision "shell", inline: "sudo cat /vagrant/.bashrc >> /home/teresalili/.bashrc ; sudo cd /home/teresalili; sudo dos2unix /home/teresalili/.bashrc ; sudo chown teresalili.teresalili /home/teresalili/.bashrc ; cd "
-  config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; sudo mkdir /home/teresalili/DEV/learning ; sudo chown --recursive teresalili.teresalili /home/teresalili/DEV ; cd ;"
+  config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/DEV ; sudo mkdir /home/teresalili/DEV/git ; /
+					cd /home/teresalili/DEV ; ln -fs /learning learning ; cd ; /
+					sudo chown --recursive teresalili.teresalili /home/teresalili/DEV ; cd ;"
   config.vm.provision "shell", inline: "sudo mkdir /home/teresalili/AGENT_INSTALL ; sudo chown --recursive teresalili.teresalili /home/teresalili/AGENT_INSTALL ; cd ; "
   config.vm.provision "shell", inline: "sudo cp /vagrant/.config /home/teresalili/.config ; sudo chown --recursive teresalili.teresalili /home/teresalili/.config ; cd ;"
 
