@@ -34,6 +34,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder "../Blackmamba", "/BlackmambaMS"
   config.vm.synced_folder ".", "/vagrant", disabled: false
+  config.vm.synced_folder "../blackmamba_personalnotes_new", "/learning"
   
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -50,6 +51,7 @@ Vagrant.configure("2") do |config|
   #   # Customize the graphic ram and graphics controller:
   vb.customize ["modifyvm", :id, "--vram", "128"]
   vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+  vb.customize ["setextradata", :id, "VBoxInternal/CPUM/IsaExts/AVX2", "1"]
   #   # Customize vm name
   vb.name = "blackmamba"
   end

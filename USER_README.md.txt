@@ -1,3 +1,6 @@
+# Personal notes - private repository
+git clone git@github.com:teresanovielloatinstana/blackmamba_personalnotes.git
+
 # GCLOUD NOTES
 Install GCLOUD SDK from
 $HOME/google-cloud-sdk/
