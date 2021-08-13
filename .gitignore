@@ -1,2 +1,4 @@
 .vagrant
 .swp
+Mongo*.tar
+cpuinfo.old
