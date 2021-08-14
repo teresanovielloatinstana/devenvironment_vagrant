@@ -13,8 +13,8 @@ export PATH=$ANT_HOME/bin:$PATH
 #export PATH=$HOME/php-bin_DEBUG/bin:$PATH
 
 #PHP8-installation
-export PATH=/home/teresalili/php8/bin:$PATH
-alias php8=/home/teresalili/php8/bin/php
+# export PATH=/home/teresalili/php8/bin:$PATH
+# alias php8=/home/teresalili/php8/bin/php
 
 #FLY installation
 export FLYCTL_INSTALL="/home/teresalili/.fly"

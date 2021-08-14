@@ -2,3 +2,5 @@
 .swp
 Mongo*.tar
 cpuinfo.old
+output_*
+secondDisk.vdi
