@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+USER=teresalili
+
 # URL: https://brew.sh/
 
 echo "Brew Script, run by: "$(whoami)
@@ -14,10 +16,10 @@ if [ ! "$?" -eq "0" ]; then
 		echo "There was a problem installing brew, please re-run with debug and check the logs"
 	else
 		echo "Brew Script, changing user for brew "
-		sudo chown --recursive teresalili.teresalili /home/linuxbrew/.linuxbrew/
+		sudo chown --recursive $USER.$USER /home/linuxbrew/.linuxbrew/
 		echo "Brew Script, changed user for brew "
 		echo "Installing Gomplate" ;
-        	sudo su - teresalili -c "/home/linuxbrew/.linuxbrew/bin/brew install gomplate" ; 
+        	sudo su - $USER -c "/home/linuxbrew/.linuxbrew/bin/brew install gomplate" ; 
 	fi
 	
 else

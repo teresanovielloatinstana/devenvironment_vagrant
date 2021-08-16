@@ -5,9 +5,9 @@ if [ ! -f "$PHP_COMPOSER_PATH" ]; then
 	echo "Installing BFG Repo-Cleaner for user $USER";
 	cd  /home/$USER/ ; 
 	mkdir -p Software ; 
-	chown teresalili.teresalili Software ; cd Software ;
+	chown $USER.$USER Software ; cd Software ;
 	curl -LO https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar ;
-	chown teresalili.teresalili bfg-1.14.0.jar ;
+	chown $USER.$USER bfg-1.14.0.jar ;
 	cd ;
 else
 	echo "Not Installing BFG Repo-Cleaner for user $USER: it already exists :-)";
