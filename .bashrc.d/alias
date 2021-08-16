@@ -1,4 +1,5 @@
 alias hg='history| egrep'
+# URL: https://rtyley.github.io/bfg-repo-cleaner/
 alias bfg='java -jar $HOME/Software/bfg-1.14.0.jar'
 # gomplate
 alias gomplate='docker run hairyhenderson/gomplate'
