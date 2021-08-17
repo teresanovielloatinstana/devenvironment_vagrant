@@ -7,6 +7,12 @@ if [ ! "$?" -eq "0" ]; then
 	 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm ;
 	 chown $USER.$USER minikube-latest.x86_64.rpm ;
 	 rpm -ivh minikube-latest.x86_64.rpm ; cd ;
+	if [ ! "$?" -eq "0" ]; then
+		echo "Installed Minikube" ;
+		rm -rf minikube-latest.x86_64.rpm ;
+	else
+		echo "It was not possible to Install Minikube" ;
+	fi
 else
 	echo "Not Installing Minikube: already installed :-) " ;
 fi

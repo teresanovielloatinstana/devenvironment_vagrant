@@ -1,5 +1,5 @@
 .vagrant
-.swp
+*.swp
 Mongo*.tar
 cpuinfo.old
 output_*

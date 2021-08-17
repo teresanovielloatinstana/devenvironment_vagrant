@@ -22,6 +22,9 @@ Vagrant.configure("2") do |config|
   
   # Initial size of the primary disk
   config.vm.disk :disk, size: "128GB", primary: true
+  # URL: https://stackoverflow.com/questions/49822594/vagrant-how-to-specify-the-disk-size
+  # vagrant plugin install vagrant-disksize
+  config.disksize.size = '128GB'
   
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -60,14 +63,15 @@ Vagrant.configure("2") do |config|
   vb.customize ["setextradata", :id, "VBoxInternal/CPUM/IsaExts/AVX2", "1"]
   #   # Create, only if it doesn't exist, a second disk. Attach the second storage
   #   # URL: https://gist.github.com/leifg/4713995 
+  #   Later on, to partition and format the second disk, follow the tutorial https://linuxhint.com/gnome_disk_utility/
   VAGRANT_ROOT = File.dirname(File.expand_path(__FILE__))
-  file_to_disk = File.join(VAGRANT_ROOT, 'secondDisk.vdi')
-  
-  unless File.exist?(file_to_disk)
-    vb.customize ['createhd', '--filename', file_to_disk, '--size', 500 * 1024]
-  end
-  vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
-  
+#  file_to_disk = File.join(VAGRANT_ROOT, 'secondDisk.vdi')
+#  
+#  unless File.exist?(file_to_disk)
+#    vb.customize ['createhd', '--filename', file_to_disk, '--size', 50 * 1024]
+#  end
+#  vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+#  
   #   # Customize vm name
   vb.name = "blackmamba"
   end

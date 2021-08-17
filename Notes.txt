@@ -23,7 +23,7 @@ vagrant up
 vagrant up --debug  
   
 -> To ssh to the virtual machine running after 'vagrant up' command, run:  
-vagran ssh
+vagrant ssh
 Note: be careful about rm -rf /, since Vagrant shares a directory at /vagrant with the directory on the host containing your Vagrantfile, and this can delete all those files.
   
 -> Stop the machine that Vagrant is managing and remove all the resources created during the machine-creation process:  
