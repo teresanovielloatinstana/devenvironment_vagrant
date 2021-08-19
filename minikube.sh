@@ -1,12 +1,14 @@
 #!/usr/bin/env bash  
 USER=teresalili
+
+# https://minikube.sigs.k8s.io/docs/start
 rpm -qa|egrep -i minikube >> /dev/null 2>&1 ;
 if [ ! "$?" -eq "0" ]; then
 	echo "Installing Minikube" ;
 	 cd /home/$USER/ ;
 	 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm ;
 	 chown $USER.$USER minikube-latest.x86_64.rpm ;
-	 rpm -ivh minikube-latest.x86_64.rpm ; cd ;
+	 rpm -Uvh minikube-latest.x86_64.rpm ; cd ;
 	if [ ! "$?" -eq "0" ]; then
 		echo "Installed Minikube" ;
 		rm -rf minikube-latest.x86_64.rpm ;

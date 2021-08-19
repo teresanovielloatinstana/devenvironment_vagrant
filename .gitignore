@@ -4,3 +4,6 @@ Mongo*.tar
 cpuinfo.old
 output_*
 secondDisk.vdi
+info_for_external_vm.tar.gz
+old_blackmamba*
+USER_README*

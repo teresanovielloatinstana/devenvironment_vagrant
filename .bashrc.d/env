@@ -1,5 +1,6 @@
 USER=teresalili
 export PS1="\e[0;35m[\u@\h \W]\$ \e[m"
+export HISTTIMEFORMAT="%F_%T"
 
 # to check if an git repo is public or not
 # https git url: <giturl>
