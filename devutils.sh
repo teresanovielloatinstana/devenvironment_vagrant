@@ -20,3 +20,6 @@ cd  /home/$USER/ ;
 su - $USER -c "curl -L https://fly.io/install.sh | sh" ; 
 cd ;
 
+# GOlang
+echo Installing GOlang;
+dnf -y install golang.x86_64 ;

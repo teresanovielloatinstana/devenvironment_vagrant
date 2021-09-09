@@ -1,6 +1,8 @@
 USER=teresalili
-export PS1="\e[0;35m[\u@\h \W]\$ \e[m"
+#export PS1="\e[0;35m[\u@\h \W]\$ \e[m"
 export HISTTIMEFORMAT="%F_%T"
+export VISUAL=vi
+export EDITOR="$VISUAL"
 
 # to check if an git repo is public or not
 # https git url: <giturl>
@@ -40,3 +42,10 @@ export agent_key=$INSTANA_AGENT_KEY
 export ROBOT_SHOP_KEY="XXXX"
 export INSTANA_EUM_KEY=$ROBOT_SHOP_KEY
 export INSTANA_EUM_REPORTING_URL="https://eum-magenta-saas.instana.rocks"
+export INSTANA_HOST="ingress-magenta-saas.instana.rocks"
+export INSTANA_PORT="443"
+export INSTAN_KEY=$INSTANA_AGENT_KEY
+export INSTANA_PERSONAL_API_TOKEN="XXXXXX"
+
+# Project Berlin
+export KUBECONFIG="XXXXXX"

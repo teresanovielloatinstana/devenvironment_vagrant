@@ -19,6 +19,9 @@ dos2unix /home/$USER/.bashrc ;
 chown $USER.$USER /home/$USER/.bashrc ; 
 
 cd;
+cp /vagrant/.vimrc /home/$USER/ ; chown --recursive $USER.$USER /home/$USER/.vimrc ;
+
+cd;
 mkdir -p /home/$USER/DEV ;  
 mkdir -p /home/$USER/DEV/git ;
 cd /home/$USER/DEV ; 

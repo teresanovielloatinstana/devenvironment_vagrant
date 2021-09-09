@@ -35,3 +35,5 @@ dnf -y groupinstall "Development Tools" "Development Libraries" ;
 dnf -y install kernel-modules-extra.x86_64 ;
 # Compilers
 dnf -y install gcc-c++.x86_64 gcc-gdb-plugin.x86_64 cmake-filesystem.x86_64 ;
+# VIM
+dnf -y install vim-command-t.x86_64 vim-common.x86_64 vim-enhanced.x86_64 vim-filesystem.noarch
