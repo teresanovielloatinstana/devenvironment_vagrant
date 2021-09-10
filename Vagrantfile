@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
   #   # Customize the amount of memory on the VM:
   vb.memory = "16384"
   #   # Customize the number of cpus in the vm: this should be half of the available CPUs in the local host
-  vb.cpus = 6
+  vb.cpus = 4
   #   # Customize the graphic ram and graphics controller:
   vb.customize ["modifyvm", :id, "--vram", "128"]
   vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
