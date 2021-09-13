@@ -23,3 +23,7 @@ cd ;
 # GOlang
 echo Installing GOlang;
 dnf -y install golang.x86_64 ;
+
+# telnet
+echo Installing telnet;
+dnf install -y telnet.x86_64 ;

@@ -29,7 +29,10 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
+  # The following is setting a NAT as first interface, it can be changed only in VirtualBox, say, if you absolutely do not want eth0 to be NAT
   config.vm.network "public_network", ip: "192.168.0.191"
+  # The following is evil, do not use it
+  # config.vm.network "private_network", ip: "192.168.50.4"
   # Port forwarding setup
   # Forwarding vm port 80 to local host port 4567
   config.vm.network :forwarded_port, guest: 80, host: 4567
