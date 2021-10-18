@@ -1,9 +1,11 @@
+#!/bin/bash -x
 USER=teresalili
 #export PS1="\e[0;35m[\u@\h \W]\$ \e[m"
 export HISTTIMEFORMAT="%F_%T"
 export VISUAL=vi
 export EDITOR="$VISUAL"
 
+eval $(ssh-agent) >> /dev/null 2>&1
 # to check if an git repo is public or not
 # https git url: <giturl>
 # URL=<giturl><gitext>"
@@ -34,18 +36,61 @@ export PATH=$HOMEBREW_INSTALL/bin:$PATH
 export PATH="$HOME/.symfony/bin:$PATH"
 
 # INSTANA agent, Instana Robot-shop-installation
-export DOWNLOAD_KEY="XXXXXX"
+export DOWNLOAD_KEY="nqtbV5cEQ5ev0MFzOIwskg"
 export INSTANA_DOWNLOAD_KEY=$DOWNLOAD_KEY
 export download_key=$DOWNLOAD_KEY
-export INSTANA_AGENT_KEY="XXXXXX"
-export agent_key=$INSTANA_AGENT_KEY
-export ROBOT_SHOP_KEY="XXXX"
-export INSTANA_EUM_KEY=$ROBOT_SHOP_KEY
-export INSTANA_EUM_REPORTING_URL="https://eum-magenta-saas.instana.rocks"
-export INSTANA_HOST="ingress-magenta-saas.instana.rocks"
 export INSTANA_PORT="443"
-export INSTAN_KEY=$INSTANA_AGENT_KEY
-export INSTANA_PERSONAL_API_TOKEN="XXXXXX"
+export INSTANA_AGENT_ENDPOINT_PORT="443"
+# zone
+export INSTANA_AGENT_ZONE="TeresaNoviello_QA"
+
+# endpoint: https://qa-instana.instana.io
+export INSTANA_RED_ENDPOINT="ingress-red-saas.instana.io"
+export INSTANA_RED_EUM_REPORTING_URL="https://eum-red-saas.instana.io"
+export INSTANA_RED_API_URL="https://qa-instana.instana.io/api"
+# QA - RED - INSTANA API TOKENS
+export QA_TES_QA_RobotShop_KEY=bix9X-t4T0Sj9iS6PYs-8w
+export QA_INSTANA_QA_SECRET_API_TOKEN="qeMhWXi2JkS5jJY2"
+export QA_TN_PERSONAL_API_TOKEN="vkwHtGtURQm4x5HQNMzUww"
+export QA_QA_INTERNAL_SECRET_API_TOKEN="Ji8AXUdAjBCjAU7g"
+export QA_TEST_qa_test_automation_API_KEY=mq97dznWSZOwBtaTDKWAxw
+
+# endpoint: https://release-instana.instana.rocks/
+export INSTANA_MAGENTA_ENDPOINT="ingress-magenta-saas.instana.rocks"
+export INSTANA_MAGENTA_EUM_REPORTING_URL="https://eum-magenta-saas.instana.rocks"
+export INSTANA_MAGENTA_API_URL="https://release-instana.instana.rocks/api"
+# RELEASE - MAGENTA - INSTANA API TOKENS
+export MAGENTA_TES_QA_RobotShop_KEY="u_67NeEQR_OxszZT8x3UFQ"
+export MAGENTA_TN_PERSONAL_API_TOKEN="t6FcLKwZRMO-0jJsPhrcdw"
+export RELEASE_TEST_qa_test_automation_API_KEY=7Gf0GGHeQhWSv7jAQBo5MA
+
+# setting of current configuration
+export INSTANA_AGENT_ENDPOINT=$INSTANA_RED_ENDPOINT;
+# export INSTANA_AGENT_ENDPOINT=$INSTANA_MAGENTA_ENDPOINT;
+export INSTANA_HOST=$INSTANA_AGENT_ENDPOINT;
+
+if [ "$INSTANA_AGENT_ENDPOINT" == "$INSTANA_RED_ENDPOINT" ] ; then
+	export INSTANA_AGENT_KEY=$DOWNLOAD_KEY;
+	export INSTANA_EUM_REPORTING_URL=$INSTANA_RED_EUM_REPORTING_URL;
+	export ROBOT_SHOP_KEY=$QA_TES_QA_RobotShop_KEY;
+	export INSTANA_EUM_KEY=$ROBOT_SHOP_KEY;
+	export INSTANA_API_TOKEN=$QA_TEST_qa_test_automation_API_KEY
+	export INSTANA_API_URL=$INSTANA_RED_API_URL
+else
+	export INSTANA_AGENT_KEY="n399JZhWQtuwd6pB42oukg";
+	export INSTANA_EUM_REPORTING_URL=$INSTANA_MAGENTA_EUM_REPORTING_URL;
+	export ROBOT_SHOP_KEY=$MAGENTA_TES_QA_RobotShop_KEY;
+	export INSTANA_EUM_KEY=$ROBOT_SHOP_KEY;
+	export INSTANA_API_TOKEN=$RELEASE_TEST_qa_test_automation_API_KEY
+	export INSTANA_API_URL=$INSTANA_RED_API_URL
+fi
+
+export agent_key=$INSTANA_AGENT_KEY
+export INSTANA_KEY=$INSTANA_AGENT_KEY
 
 # Project Berlin
-export KUBECONFIG="XXXXXX"
+export KUBECONFIG=/tmp/berlin/kubeconfig
+# minikube config set driver docker
+
+# Export local software path
+export PATH=$HOME/bin:$PATH
