@@ -33,4 +33,7 @@ else
 	echo "NOT Installing ANT: ANT is already installed :-) ";
 fi
 
+# JAVA
+echo "Installing NodeJs"; 
+dnf install -y nodejs.x86_64
 cd ;
