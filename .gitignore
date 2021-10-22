@@ -8,3 +8,11 @@ info_for_external_vm.tar.gz
 old_blackmamba*
 USER_README*
 host_backups
+AGENT_INSTALL
+DEV
+opt
+google-cloud-sdk
+linux-amd64
+network_check
+php-composer
+temporaryPwd2.txt
