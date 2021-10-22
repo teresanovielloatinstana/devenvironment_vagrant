@@ -1,4 +1,4 @@
-# devenvironment_vagrant
+# fedora_devenvironment_vagrant
 The repository contains vagrant files for development environments
 
 Creation of the VM
@@ -27,3 +27,17 @@ $USER ALL = NOPASSWD: /usr/bin/systemctl, /usr/bin/kill
 $USER ALL=(ALL) NOPASSWD: ALL
 10. save and close the file
 11. As root, write in /etc/hostname the $HOSTNAME string, or the hostname will be lost at startup
+12. [optional] Install the latest VirtualBox Guest Additions: [Ref: https://stackoverflow.com/questions/43492322/vagrant-was-unable-to-mount-virtualbox-shared-folders]
+  12.1 cd /c/Program Files/Oracle/VirtualBox;
+  12.2 scp -rp VBoxGuestAdditions.iso $USER@$HOST_IP:./
+  12.3 ssh $USER@$HOST_IP
+  12.4 sudo mkdir /media/iso
+  12.5 sudo mount -o loop /home/teresalili/VBoxGuestAdditions.iso /media/iso
+  12.6 sudo sh /media/iso/VBoxLinuxAdditions.run
+13. Setting up ssh-agent
+As $USER: 
+  13.1 eval $(ssh-agent)
+  13.2  mkdir $HOME/.ssh ; sudo chmod 700 $HOME/.ssh
+  13.3 On guest host: 1. tar xvzf info_for_external_vm.tar.gz 2.scp info_for_external_vm/sshbkp/*id_ed25519* $USER@$HOST_IP:./.ssh
+  13.4 sudo chmod 600 .ssh/id_ed25519
+  13.5 add keys with the command ssh-add ~/.ssh/id_ed25519
