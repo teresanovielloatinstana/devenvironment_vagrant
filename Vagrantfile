@@ -30,7 +30,11 @@ Vagrant.configure("2") do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network.
   # The following is setting a NAT as first interface, it can be changed only in VirtualBox, say, if you absolutely do not want eth0 to be NAT
-  config.vm.network "public_network", ip: "192.168.0.191"
+  # config.vm.network "public_network", ip: "192.168.1.191"
+  # config.vm.network "public_network", ip: "192.168.0.191"
+  # It is better to not have an explicit IP, so you can chane network often and without any problem
+  # Important: follow README to set static IP in the vm once it is running: it will prevent proxy-behaviour and gcloud slow connection
+  config.vm.network "public_network"
   # The following is evil, do not use it
   # config.vm.network "private_network", ip: "192.168.50.4"
   # Port forwarding setup

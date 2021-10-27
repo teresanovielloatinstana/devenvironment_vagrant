@@ -16,3 +16,4 @@ linux-amd64
 network_check
 php-composer
 temporaryPwd2.txt
+.bashrc*

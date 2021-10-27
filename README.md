@@ -41,3 +41,42 @@ As $USER:
   13.3 On guest host: 1. tar xvzf info_for_external_vm.tar.gz 2.scp info_for_external_vm/sshbkp/*id_ed25519* $USER@$HOST_IP:./.ssh
   13.4 sudo chmod 600 .ssh/id_ed25519
   13.5 add keys with the command ssh-add ~/.ssh/id_ed25519
+14. Network
+14.1 Obtain new host ip
+ifconfig|egrep 192
+export BLACKMAMBA_IP=192.168.0.78
+14.2 
+eth1->settings->IPv4
+changed IPv4 method from 'Automatic (DHCP)' to 'Manual'
+set static ip with correct netmask and gateway
+reload eth1 settings (switch off/switch on the eth1)
+15. Recover environment [To do before the installation of GCloud SDK at step 16].
+login as $USER
+cp -rp /vagrant/host_backups/HOME/USER/.bashrc .
+cp -rp /vagrant/host_backups/HOME/USER/.bashrc.d/ . 
+16. Install gcloud SDK and configure it
+visit https://cloud.google.com/sdk/docs/install
+cd Downloads
+tar xvzf google-cloud-sdk-361.0.0-linux-x86_64.tar.gz
+mv google-cloud-sdk ~/
+rm -rf google-cloud-sdk-361.0.0-linux-x86_64.tar.gz
+./google-cloud-sdk/install.sh
+
+After the first installaiton of gcloud sdk, you need to do gcloud init.
+gcloud init
+if it is too slow, you can do:
+gcloud init --skip-diagnostics
+Set a project, here.
+You can change this configuration afterwards.
+If you are already logged-in, you can use the convenient
+gcloud config set project <new_project>
+
+gcloud auth login
+gcloud auth configure-docker
+
+17. [optional] To change the runlevel to multiuser:
+sudo systemctl set-default multi-user.target
+18. [optional] Configure git
+git config --global user.email "XXX@YYY.ZZZ"
+git config --global user.name "Abc Dfg"
+git config --global core.autocrlf input
