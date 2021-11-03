@@ -27,3 +27,7 @@ dnf -y install golang.x86_64 ;
 # telnet
 echo Installing telnet;
 dnf install -y telnet.x86_64 ;
+
+# cron
+echo Installing cron;
+dnf install -y cronie.x86_64
