@@ -46,6 +46,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", "/vagrant", disabled: false
+  config.vm.boot_timeout = 1800
   # Link a shared folder only if it does exist on host 
   # URL: https://stackoverflow.com/questions/27901324/can-i-configure-vagrant-to-setup-a-synced-folder-only-if-it-exists-on-the-host/27915406
   if File.directory?(File.expand_path("../blackmamba_personalnotes_new"))
