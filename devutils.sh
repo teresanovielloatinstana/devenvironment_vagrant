@@ -1,7 +1,7 @@
 #!/usr/bin/env bash  
 USER=teresalili
 BFG_PATH=/home/$USER/Software/bfg-1.14.0.jar
-if [ ! -f "$PHP_COMPOSER_PATH" ]; then
+if [ ! -f "$BFG_PATH" ]; then
 	echo "Installing BFG Repo-Cleaner for user $USER";
 	cd  /home/$USER/ ; 
 	mkdir -p Software ; 
