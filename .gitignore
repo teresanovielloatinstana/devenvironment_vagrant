@@ -8,7 +8,7 @@ info_for_external_vm.tar.gz
 old_blackmamba*
 USER_README*
 host_backups
-AGENT_INSTALL
+instana_scripts
 DEV
 opt
 google-cloud-sdk

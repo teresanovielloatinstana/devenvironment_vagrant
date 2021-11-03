@@ -28,6 +28,6 @@ cd /home/$USER/DEV ;
 ln -fs /learning learning ; 
 cd ;
 chown --recursive $USER.$USER /home/$USER/DEV ; cd ;
-mkdir -p /home/$USER/AGENT_INSTALL ;  chown --recursive $USER.$USER /home/$USER/AGENT_INSTALL ; cd ;
+mkdir -p /home/$USER/instana_scriptsL ;  chown --recursive $USER.$USER /home/$USER/instana_scriptsL ; cd ;
 mv /home/$USER/.config /home/$USER/config.bkp ;
 cp -r /vagrant/.config /home/$USER/ ;  chown --recursive $USER.$USER /home/$USER/.config ; cd ;
