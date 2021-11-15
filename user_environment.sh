@@ -31,3 +31,8 @@ chown --recursive $USER.$USER /home/$USER/DEV ; cd ;
 mkdir -p /home/$USER/instana_scriptsL ;  chown --recursive $USER.$USER /home/$USER/instana_scriptsL ; cd ;
 mv /home/$USER/.config /home/$USER/config.bkp ;
 cp -r /vagrant/.config /home/$USER/ ;  chown --recursive $USER.$USER /home/$USER/.config ; cd ;
+
+# Concourse
+mkdir -p /home/$USER/DEV/git/concourse ; cd /home/$USER/DEV/git/concourse
+curl -O https://concourse-ci.org/docker-compose.yml
+cd ;
