@@ -15,9 +15,14 @@ fi
 
 # FLY
 # https://fly.io/docs/hands-on/installing/
+# su - $USER -c "curl -L https://fly.io/install.sh | sh" ; 
 echo Installing FLY;
 cd  /home/$USER/ ;
-su - $USER -c "curl -L https://fly.io/install.sh | sh" ; 
+mkdir ~/.newfly ;
+# https://concourse-ci.org/quick-start.html
+su - $USER -c "curl 'http://localhost:8080/api/v1/cli?arch=amd64&platform=linux' -o ~/.newfly/fly" ;
+chmod +x ~/.newfly/fly
+cp ~/.newfly/fly /usr/local/bin/
 cd ;
 
 # GOlang
