@@ -5,15 +5,16 @@ usermod -a -G docker,wheel $USER
 # Add user's own aliases and environment variables
 echo "Modify User Environment";
 mv /home/$USER/.bashrc.d /home/$USER/bashrc.d.bkp
-cp -r /vagrant/.bashrc.d/ /home/$USER/;  
+cp -r /vagrant/host_backups/HOME/USER/.bashrc.d/ /home/$USER/;
 cd /home/$USER/.bashrc.d/;
-dos2unix ./env;
+dos2unix ./generalenv;
 dos2unix ./alias;
+dos2unix ./instaenv.sh;
 cd /home/$USER;
 chmod --recursive 775 /home/$USER/.bashrc.d/;
 chown --recursive $USER.$USER /home/$USER/.bashrc.d/;
 
-cp /vagrant/.bashrc /home/$USER/.bashrc ;  
+cp /vagrant/host_backups/HOME/USER/.bashrc /home/$USER/.bashrc ;  
 cd /home/$USER;  
 dos2unix /home/$USER/.bashrc ;  
 chown $USER.$USER /home/$USER/.bashrc ; 
@@ -32,7 +33,3 @@ mkdir -p /home/$USER/instana_scriptsL ;  chown --recursive $USER.$USER /home/$US
 mv /home/$USER/.config /home/$USER/config.bkp ;
 cp -r /vagrant/.config /home/$USER/ ;  chown --recursive $USER.$USER /home/$USER/.config ; cd ;
 
-# Concourse
-mkdir -p /home/$USER/DEV/git/concourse ; cd /home/$USER/DEV/git/concourse
-curl -O https://concourse-ci.org/docker-compose.yml
-cd ;

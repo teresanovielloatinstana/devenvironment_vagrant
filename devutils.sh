@@ -25,6 +25,12 @@ chmod +x ~/.newfly/fly
 cp ~/.newfly/fly /usr/local/bin/
 cd ;
 
+# Concourse
+mkdir -p /home/$USER/bin/concourse ; cd /home/$USER/bin/concourse
+curl -O https://concourse-ci.org/docker-compose.yml
+chown --recursive $USER.$USER /home/$USER/bin
+cd ;
+
 # GOlang
 echo Installing GOlang;
 dnf -y install golang.x86_64 ;
@@ -36,3 +42,6 @@ dnf install -y telnet.x86_64 ;
 # cron
 echo Installing cron;
 dnf install -y cronie.x86_64
+
+# Since this script is executed with priviled permissions, re-establish all the USER permissions
+chown --recursive $USER.$USER /home/$USER/

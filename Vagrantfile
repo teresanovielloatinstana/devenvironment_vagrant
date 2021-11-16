@@ -108,7 +108,7 @@ Vagrant.configure("2") do |config|
   # Minikube
   config.vm.provision :shell, path: "minikube.sh", privileged: true
   
-  # DevUtils: BFG Repo-Cleaner, 
+  # DevUtils: BFG Repo-Cleaner, fly, Concourse, GOlang, telnet, cron
   config.vm.provision :shell, path: "devutils.sh", privileged: true
   
   # Refine user's environment
