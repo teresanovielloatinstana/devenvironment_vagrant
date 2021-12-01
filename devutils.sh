@@ -18,11 +18,15 @@ fi
 # su - $USER -c "curl -L https://fly.io/install.sh | sh" ; 
 echo Installing FLY;
 cd  /home/$USER/ ;
-mkdir ~/.newfly ;
+mkdir -p .newfly ;
 # https://concourse-ci.org/quick-start.html
-su - $USER -c "curl 'http://localhost:8080/api/v1/cli?arch=amd64&platform=linux' -o ~/.newfly/fly" ;
+# su - $USER -c "curl 'http://localhost:8080/api/v1/cli?arch=amd64&platform=linux' -o ~/.newfly/fly" ;
+cp host_backups/software/fly-7.4.0-linux-amd64.tgz ~/.newfly
+cd .newfly;
+tar xvzf fly-7.4.0-linux-amd64.tgz
 chmod +x ~/.newfly/fly
 cp ~/.newfly/fly /usr/local/bin/
+chown --recursive $USER.$USER /home/$USER/.newfly
 cd ;
 
 # Concourse
