@@ -44,8 +44,12 @@ echo Installing telnet;
 dnf install -y telnet.x86_64 ;
 
 # cron
-echo Installing cron;
-dnf install -y cronie.x86_64
+echo Installing cron ;
+dnf install -y cronie.x86_64;
+
+# meld
+echo "Installing meld";
+dnf -y install meld.noarch ;
 
 # Since this script is executed with priviled permissions, re-establish all the USER permissions
 chown --recursive $USER.$USER /home/$USER/
