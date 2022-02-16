@@ -35,6 +35,14 @@ curl -O https://concourse-ci.org/docker-compose.yml
 chown --recursive $USER.$USER /home/$USER/bin
 cd ;
 
+# YTT
+cd /home/$USER/bin ;
+wget https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.39.0/ytt-linux-amd64
+chmod +x ./ytt-linux-amd64
+ln -fs ytt-linux-amd64 ytt
+chown --recursive $USER.$USER /home/$USER/bin
+cd ;
+
 # GOlang
 echo Installing GOlang;
 dnf -y install golang.x86_64 ;
