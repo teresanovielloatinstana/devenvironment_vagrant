@@ -69,6 +69,9 @@ Vagrant.configure("2") do |config|
   vb.customize ["modifyvm", :id, "--vram", "128"]
   vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
   vb.customize ["setextradata", :id, "VBoxInternal/CPUM/IsaExts/AVX2", "1"]
+  # Ref: https://github.com/hashicorp/vagrant/issues/11777
+  vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+  vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
   #   # Create, only if it doesn't exist, a second disk. Attach the second storage
   #   # URL: https://gist.github.com/leifg/4713995 
   #   Later on, to partition and format the second disk, follow the tutorial https://linuxhint.com/gnome_disk_utility/
