@@ -59,5 +59,19 @@ dnf install -y cronie.x86_64;
 echo "Installing meld";
 dnf -y install meld.noarch ;
 
+# Install atom
+#cd ;
+#mkdir -p /home/$USER/atom ;
+#cd /home/$USER/atom ;
+#wget https://atom.io/download/rpm ;
+
+# indent
+echo "Installing indent";
+dnf install -y indent.x86_64;
+
+# gitK
+echo "Installing gitk";
+sudo dnf -y install gitk.noarch;
+
 # Since this script is executed with priviled permissions, re-establish all the USER permissions
 chown --recursive $USER.$USER /home/$USER/
