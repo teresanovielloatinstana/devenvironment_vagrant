@@ -75,3 +75,19 @@ sudo dnf -y install gitk.noarch;
 
 # Since this script is executed with priviled permissions, re-establish all the USER permissions
 chown --recursive $USER.$USER /home/$USER/
+
+# BCC, for EBPF programming
+sudo dnf -y install bcc
+
+# Vagrant, for ebpf-sensor E2E tests
+sudo dnf -y install vagrant
+
+# Python virtual environment
+mkdir -p /home/$USER/myvpython
+python -m venv /home/$USER/myvpython
+cd /home/$USER/myvpython/bin
+chmod +x ./activate
+./activate
+cp host_backups/HOME/USER/.netrc /home/$USER
+cp -r host_backups/HOME/USER/.pip /home/$USER
+cp host_backups/HOME/USER/.pip/pip.conf /home/$USER/myvpython
