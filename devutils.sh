@@ -91,3 +91,5 @@ chmod +x ./activate
 cp host_backups/HOME/USER/.netrc /home/$USER
 cp -r host_backups/HOME/USER/.pip /home/$USER
 cp host_backups/HOME/USER/.pip/pip.conf /home/$USER/myvpython
+export PATH=/home/teresalili/.local/bin:$PATH
+pip install yaml_extensions
