@@ -58,6 +58,8 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
+  # Make sure that your VM has the Cable Connected setting checked.
+  vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
   #   # Display the VirtualBox GUI when booting the machine
   vb.gui = true
   #
@@ -70,6 +72,7 @@ Vagrant.configure("2") do |config|
   vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
   vb.customize ["setextradata", :id, "VBoxInternal/CPUM/IsaExts/AVX2", "1"]
   # Ref: https://github.com/hashicorp/vagrant/issues/11777
+  # Ref2: also mentioned into https://github.com/hashicorp/vagrant/issues/11890
   vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
   vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
   #   # Create, only if it doesn't exist, a second disk. Attach the second storage
